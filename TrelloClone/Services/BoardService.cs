@@ -7,6 +7,7 @@ namespace TrelloClone.Services
 {
     public class BoardService
     {
+        // salt okunur işlemi
         private readonly TrelloCloneDbContext _dbContext;
 
         public BoardService(TrelloCloneDbContext dbContext)
@@ -14,6 +15,7 @@ namespace TrelloClone.Services
             _dbContext = dbContext;
         }
 
+        // boardlist sınıflı methodumuz
         public BoardList ListBoard()
         {
             var model = new BoardList();
@@ -80,17 +82,26 @@ namespace TrelloClone.Services
                 var firstColumn = board.Columns.FirstOrDefault();
                 var secondColumn = board.Columns.FirstOrDefault();
                 var thirdColumn = board.Columns.FirstOrDefault();
-            
-                if (firstColumn == null || secondColumn == null || thirdColumn == null)
+                var fourthColumn = board.Columns.FirstOrDefault();
+                var fifthColumn = board.Columns.FirstOrDefault();
+               
+                // konların boş olma durumlarının kontrol edilmesi
+                if (firstColumn == null || secondColumn == null || thirdColumn == null || fourthColumn == null || fifthColumn == null)
                 {
+                    // column başlıkları
                     firstColumn = new Models.Column { Title = "Todo"};
-                    secondColumn = new Models.Column { Title = "Doing" };
-                    thirdColumn = new Models.Column { Title = "Done" };
+                    secondColumn = new Models.Column { Title = "In Progress" };
+                    thirdColumn = new Models.Column { Title = "Revison" };
+                    fourthColumn = new Models.Column { Title = "Check" };
+                    fifthColumn = new Models.Column { Title = "Done" };
+                    // başlıkları listeye ekleme
                     board.Columns.Add(firstColumn);
                     board.Columns.Add(secondColumn);
                     board.Columns.Add(thirdColumn);
+                    board.Columns.Add(fourthColumn);
+                    board.Columns.Add(fifthColumn);
                 }
-
+                // yeni kartımızı 1. columna ekleme
                 firstColumn.Cards.Add(new Models.Card
                 {
                     Contents = viewModel.Contents
@@ -99,7 +110,7 @@ namespace TrelloClone.Services
 
             _dbContext.SaveChanges();
         }
-
+        // dbcontext ile yeni tahta ekleme
         public void AddBoard(NewBoard viewModel)
         {
             _dbContext.Boards.Add(new Models.Board

@@ -4,6 +4,7 @@ using TrelloClone.ViewModels;
 
 namespace TrelloClone.Controllers
 {
+    // card için controller
     public class CardController : Controller
     {
         private readonly CardService _cardService;

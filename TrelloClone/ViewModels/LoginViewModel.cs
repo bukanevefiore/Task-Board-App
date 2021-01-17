@@ -4,7 +4,7 @@ namespace TrelloClone.ViewModels
 {
     public class LoginViewModel
     {
-        // yeni kullanıcı ekleme sayfamız için view
+        // kullanıcı giriş sayfamız için view
         [Required]
         [EmailAddress]
         public string Email { get; set; }

@@ -27,13 +27,13 @@ namespace TrelloClone.Services
             if (card == null) 
                 return new CardDetails();
            
-            // retrieve boards
+            // panolarý alma
             var board = _dbContext
                 .Boards
                 .Include(b => b.Columns)
                 .SingleOrDefault(x => x.Id == card.Column.BoardId);
 
-            // map board columns
+            // harita panosu sütunlarý
             if (board != null) 
             {
                 var availableColumns = board
@@ -50,13 +50,14 @@ namespace TrelloClone.Services
                     Id = card.Id,
                     Contents = card.Contents,
                     Notes = card.Notes,
-                    Columns = availableColumns.ToList(), // list available columns
-                    Column = card.ColumnId // map current column
+                    Columns = availableColumns.ToList(), // mevcut sütunlarý listeleyin
+                    Column = card.ColumnId // mevcut sütunu eþle
                 };
             }
             return null;
         }
 
+        // iþ takibi kart detyalarýnýn güncellenmesi
         public void Update(CardDetails cardDetails)
         {
             var card = _dbContext.Cards.SingleOrDefault(x => x.Id == cardDetails.Id);
@@ -66,7 +67,7 @@ namespace TrelloClone.Services
 
             _dbContext.SaveChanges();
         }
-
+        // kart silme
         public void Delete(int id)
         {
             var card = _dbContext.Cards.SingleOrDefault(x => x.Id == id);

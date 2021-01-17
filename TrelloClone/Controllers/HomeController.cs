@@ -13,7 +13,7 @@ namespace TrelloClone.Controllers
         {
             _boardService = boardService;
         }
-
+        // index için aksiyon oluşturulması
         public IActionResult Index()
         {
             var model = _boardService.ListBoard();
@@ -21,12 +21,13 @@ namespace TrelloClone.Controllers
             return View(model);
         }
 
+        // create için aksiyon get isteği
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-
+        // board için http post ile aksiyon 
         [HttpPost]
         public IActionResult Create(NewBoard viewModel)
         {
