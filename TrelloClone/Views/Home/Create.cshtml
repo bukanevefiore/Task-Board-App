@@ -1,0 +1,14 @@
+﻿@model TrelloClone.ViewModels.NewBoard;
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <h2>Add a new Project Board</h2>
+    <form method="post" asp-action="Create" asp-controller="Home">
+        <label>Project Name</label>
+        <input type="text" asp-for="Title" placeholder="Project Name"/>
+        <input type="submit" class="btn" />
+    </form>
+</div>
+

@@ -1,0 +1,57 @@
+﻿@model TrelloClone.ViewModels.CardDetails
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h2>Work Fallow</h2>
+    
+    <div class="row">
+        <form class="col s12" asp-controller="Card" asp-action="Update">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Card contents" asp-for="Contents" />
+                    <label asp-for="Contents">Task Açıklaması</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea placeholder="Notes"
+                              asp-for="Notes"
+                              class="materialize-textarea"></textarea>
+                    <label asp-for="Notes">Yapılacak İş</label>
+                </div>
+            </div>
+          
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <select asp-for="Column" asp-items="Model.Columns"></select>
+                    <label asp-for="Column">State</label>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Save" class="btn">
+                <button asp-controller="Board" asp-action="Index" class="btn">Back to Board</button>
+            </div>
+            <input asp-for="Id" type="hidden" />
+        </form>
+    </div>
+</div>
+
+
+@if(TempData.ContainsKey("Message"))
+{
+    <script type="text/javascript">
+        M.toast({ html: '@TempData["Message"]'}, 3000);
+    </script>
+}
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>

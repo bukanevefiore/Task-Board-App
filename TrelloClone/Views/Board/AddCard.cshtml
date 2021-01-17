@@ -1,0 +1,24 @@
+﻿@model TrelloClone.ViewModels.AddCard
+@{
+    ViewData["Title"] = "AddCard";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Add Tech Card</h2>
+        <form asp-action="AddCard" asp-controller="Board">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="text" placeholder="Teknik Uzman" />
+            <label asp-for="Contents"></label>
+            <input type="text" asp-for="Contents" placeholder="Task Açıklaması" />
+            <input type="text" placeholder="Notlar" />
+            <input type="text" placeholder="Date" />
+            <input type="text" placeholder="Tahmini Süre" />
+            <input type="text" placeholder="Gerçekleşen Süre" />
+            
+
+            <button type="submit" class="btn">Add Card</button>
+        </form>
+    </div>
+</div>
+
