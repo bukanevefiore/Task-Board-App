@@ -5,6 +5,7 @@ namespace TrelloClone.ViewModels
 {
     public class CardDetails
     {
+        // iş takibi (detaylar kısmının oluşturulması)
         public int Id { get; set; }
         public string Contents { get; set; }
         public string Notes { get; set; }

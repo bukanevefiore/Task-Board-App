@@ -4,6 +4,7 @@ namespace TrelloClone.ViewModels
 {
     public class AddCard
     {
+        // kart ekleme propertylerinin oluşturulması
         public int Id { get; set; }
 
         [Required]
