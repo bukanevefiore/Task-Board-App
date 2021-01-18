@@ -9,6 +9,7 @@ namespace TrelloClone.Controllers
 {
     public class UserController : Controller
     {
+        // kullanıcılar için controller oluştuurlması
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
 
@@ -18,12 +19,12 @@ namespace TrelloClone.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        // yeni kayıt aksiyon
         public IActionResult Register()
         {
             return View();
         }
-
+        // kayıt işlmleri
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -31,6 +32,7 @@ namespace TrelloClone.Controllers
         {
             if(ModelState.IsValid)
             {
+                // vverilerin eşlenmesi
                 var user = new AppUser 
                 { 
                     UserName = model.Email,
@@ -48,14 +50,14 @@ namespace TrelloClone.Controllers
                 }
             }
 
-            return View(model);
+            return View(model);//sonucu diöndür
         } 
         
         public IActionResult Login()
         {
             return View();
         }
-
+        // login için token işlmeleri
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

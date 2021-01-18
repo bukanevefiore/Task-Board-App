@@ -13,7 +13,7 @@ namespace TrelloClone.Controllers
         {
             _cardService = cardService;
         }
-        
+        // iş takibi için aksiyon
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -21,7 +21,7 @@ namespace TrelloClone.Controllers
 
             return View(viewModel);
         }
-
+        // update için aksiyon
         [HttpPost]
         public IActionResult Update(CardDetails cardDetails)
         {
